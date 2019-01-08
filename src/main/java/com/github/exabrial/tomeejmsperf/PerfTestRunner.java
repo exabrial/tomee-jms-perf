@@ -20,7 +20,6 @@ public class PerfTestRunner {
 	@Resource
 	private ConnectionFactory factory;
 	private AtomicLong counter = new AtomicLong();
-
 	private Connection connection;
 
 	@PostConstruct

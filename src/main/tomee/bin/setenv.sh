@@ -20,7 +20,7 @@ export JAVA_OPTS="$JAVA_OPTS\
  -XX:+UseNUMA\
  -XX:+UseStringDeduplication\
  -XX:+UseTLAB\
- -Xmx32M\
+ -Xmx128M\
 "
 
 # Enable Remote JMX on port 1099

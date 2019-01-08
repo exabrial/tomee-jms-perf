@@ -19,16 +19,16 @@ import javax.jms.TextMessage;
 public class TestMDB implements MessageListener {
 	@Inject
 	private PerfTestRunner runner;
+	@Inject
+	private Session session;
 
 	@Override
 	public void onMessage(Message message) {
 		try {
-			Session session = runner.getConnection().createSession(true, Session.AUTO_ACKNOWLEDGE);
 			Destination destination = session.createQueue("com.github.exabrial.tomeejmsperf");
 			MessageProducer producer = session.createProducer(destination);
 			TextMessage egressMessage = session.createTextMessage(message.getBody(String.class));
 			producer.send(egressMessage);
-			session.close();
 			runner.increment();
 		} catch (JMSException e) {
 			throw new RuntimeException(e);
