@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+	<Container
+		id="container/singleton"
+		type="SINGLETON">
+		AccessTimeout=5s
+	</Container>
+	<Container
+		id="container/mdb"
+		type="MESSAGE">
+		ResourceAdapter=ra/activemq
+	</Container>
+	<TransactionManager
+		id="xa/transactionManager"
+		type="TransactionManager">
+		defaultTransactionTimeout=15s
+	</TransactionManager>
+	<Resource
+		id="ra/activemq"
+		type="ActiveMQResourceAdapter">
+		BrokerXmlConfig=broker:(tcp://localhost:61616)
+		ServerUrl=failover:(tcp://localhost:61616)
+	</Resource>
+	<Resource
+		id="jms/connectionFactory"
+		type="javax.jms.ConnectionFactory">
+		ResourceAdapter=ra/activemq
+		poolMaxSize=15
+		poolMinSize=3
+		connectionMaxWaitTime=5s
+	</Resource>
+</tomee>

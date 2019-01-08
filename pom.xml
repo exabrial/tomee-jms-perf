@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project
+	xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.github.exabrial</groupId>
+	<artifactId>tomee-jms-perf</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>${project.artifactId}</name>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.6.1</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+					<compilerArguments>
+						<parameters />
+					</compilerArguments>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.tomee.maven</groupId>
+				<artifactId>tomee-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>exec</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<tomeeClassifier>plume</tomeeClassifier>
+					<tomeeVersion>7.0.5</tomeeVersion>
+					<context>${project.artifactId}</context>
+					<runtimeWorkingDir>${project.build.finalName}-exec</runtimeWorkingDir>
+					<libs>
+						<lib>mysql:mysql-connector-java:8.0.13</lib>
+						<lib>remove:eclipselink</lib>
+						<lib>org.eclipse.persistence:eclipselink:2.7.3</lib>
+						<lib>org.eclipse.persistence:org.eclipse.persistence.moxy:2.7.3</lib>
+						<lib>remove:activemq-broker</lib>
+						<lib>remove:activemq-client</lib>
+						<lib>remove:activemq-jdbc-store</lib>
+						<lib>remove:activemq-kahadb-store</lib>
+						<lib>remove:activemq-openwire-legacy</lib>
+						<lib>remove:activemq-ra</lib>
+						<lib>org.apache.activemq:activemq-broker:5.15.7</lib>
+						<lib>org.apache.activemq:activemq-client:5.15.7</lib>
+						<lib>org.apache.activemq:activemq-jdbc-store:5.15.7</lib>
+						<lib>org.apache.activemq:activemq-kahadb-store:5.15.7</lib>
+						<lib>org.apache.activemq:activemq-openwire-legacy:5.15.7</lib>
+						<lib>org.apache.activemq:activemq-ra:5.15.7</lib>
+					</libs>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

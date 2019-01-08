@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Server
+	port="5000"
+	shutdown="SHUTDOWN">
+	<Listener className="org.apache.tomee.catalina.ServerListener" />
+	<Listener className="org.apache.catalina.startup.VersionLoggerListener" />
+	<Listener className="org.apache.catalina.security.SecurityListener" />
+	<Listener
+		className="org.apache.catalina.core.AprLifecycleListener"
+		SSLEngine="on" />
+	<Listener className="org.apache.catalina.core.JreMemoryLeakPreventionListener" />
+	<Listener className="org.apache.catalina.mbeans.GlobalResourcesLifecycleListener" />
+	<Listener className="org.apache.catalina.core.ThreadLocalLeakPreventionListener" />
+	<Service name="Catalina">
+		<Connector
+			connectionTimeout="20000"
+			port="8080"
+			address="127.0.0.1"
+			protocol="HTTP/1.1"
+			server="Apache TomEE"
+			xpoweredBy="false"
+			redirectPort="8443" />
+		<Engine
+			defaultHost="localhost"
+			name="Catalina">
+			<Host
+				name="localhost"
+				appBase="webapps"
+				unpackWARs="true"
+				autoDeploy="false" />
+		</Engine>
+	</Service>
+</Server>
