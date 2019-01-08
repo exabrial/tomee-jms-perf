@@ -1,7 +1,5 @@
 package com.github.exabrial.tomeejmsperf;
 
-import java.util.concurrent.atomic.AtomicLong;
-
 import javax.ejb.ActivationConfigProperty;
 import javax.ejb.MessageDriven;
 import javax.ejb.TransactionAttribute;
@@ -21,6 +19,7 @@ import javax.jms.TextMessage;
 public class TestMDB implements MessageListener {
 	@Inject
 	private PerfTestRunner runner;
+
 	@Override
 	public void onMessage(Message message) {
 		try {
